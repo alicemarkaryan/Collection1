@@ -10,35 +10,30 @@ namespace Collection1
     internal class Program
     {
 
-        class A:Ihuman
+        class Human : Ihuman
         {
             public int Id { get; set; }
             public int Age { get; set; }
             public bool IsMarried { get; set; }
 
-            //public A(int id, int age,bool isMarried) 
+            //public Human(int id, int age,bool isMarried) 
             //{
             //    this.Id = id; this.Age = age; this.IsMarried = isMarried;
             //}
 
-
-
-
-
-
         }
-        class B:A
+        class AboutHuman : Human
         {
             public string Name { get; set; }
-            //public B(int id, string name,int age, bool isMarried) : base(id,age,isMarried)
+            //public AboutHuman(int id, string name,int age, bool isMarried) : base(id,age,isMarried)
             //{
             //    this.Name = name;
             //}
         }
-        class C : B
+        class SalaryHuman : AboutHuman
         {
             public decimal Salary { get; set; }
-            //public C(int id, decimal salary, int age,string name,bool isMarried) : base(id, name,age, isMarried)
+            //public SalaryHuman(int id, decimal salary, int age,string name,bool isMarried) : base(id, name,age, isMarried)
             //{
             //    this.Salary = salary;
             //}
@@ -46,19 +41,19 @@ namespace Collection1
         }
         interface Ihuman
         {
-             bool IsMarried {get;set;}
+            bool IsMarried { get; set; }
         }
-        class D:C,Ihuman
+        class FamilyMember : SalaryHuman, Ihuman
         {
             public string FamilyMembers { get; set; }
-            //public D(int id, decimal salary, int age, string name,
+            //public FamilyMember(int id, decimal salary, int age, string name,
             //    string familyMembers,bool isMarried) :base(id, salary,age, name, isMarried)
             //{
             //    this.FamilyMembers = familyMembers;
             //}
-            
-            
-            public void getfamilyMembers(bool isMarried)
+
+
+            public void GetfamilyMembers(bool isMarried)
             {
                 if (isMarried)
                 {
@@ -74,58 +69,51 @@ namespace Collection1
 
         static void Main(string[] args)
         {
-        //    A a = new A(1, 20, true);
-        //    A aa = new A(2, 25, false);
-        //    B b = new B(1, "Aram", 20, true);
-        //    B bb = new B(2, "Ani", 25, false);
-        //    C c = new C(1, 300000, 20, "Aram", true);
-        //    C cc = new C(2, 2500000, 25, "Ani",false);
-        //    D d = new D(1, 300000, 20, "Aram", "Ani Anyan, Poghos Poghosyan", true);
-        //    D dd = new D(2, 2500000, 25, "Ani", " null", false);
+            //    Human a = new Human(1, 20, true);
+            //    Human aa = new Human(2, 25, false);
+            //    AboutHuman b = new AboutHuman(1, "Aram", 20, true);
+            //    AboutHuman bb = new AboutHuman(2, "Ani", 25, false);
+            //    SalaryHuman c = new SalaryHuman(1, 300000, 20, "Aram", true);
+            //    SalaryHuman cc = new SalaryHuman(2, 2500000, 25, "Ani",false);
+            //    FamilyMember d = new FamilyMember(1, 300000, 20, "Aram", "Ani Anyan, Poghos Poghosyan", true);
+            //    FamilyMember dd = new FamilyMember(2, 2500000, 25, "Ani", " null", false);
 
-            List<A> list = new List<A>();
-            list.Add(new A { Id = 1, Age = 20, IsMarried=true });
-            list.Add(new A { Id = 2, Age = 25, IsMarried = false });
-            List<B> list1 = new List<B>();
-            list1.Add(new B { Id = 1, Age = 20, IsMarried = true, Name = "Aram" });
-            list1.Add(new B { Id = 2, Age = 25, IsMarried = false, Name = "Ani" });
-            List<C> list2 = new List<C>();
-            list2.Add(new C { Id = 1, Name = "Aram", Age = 20, IsMarried = true });
-            list2.Add(new C { Id = 2, Name = "Ani", Age = 25, IsMarried = false });
-            List<D> list3 = new List<D>();
-            list3.Add(new D { Id = 1, Name = "Aram", Age = 20, IsMarried = true,Salary=3000000, FamilyMembers="ANi Anyan, Poghos Poghosyan" });
-            List<D> list4 = new List<D>();
-            list4.Add(new D { Id = 2, Name = "Ani", Age = 25, IsMarried = false, Salary = 250000, FamilyMembers = "null" });
-            A a = new A();
+            List<Human> list = new List<Human>();
+            list.Add(new Human { Id = 1, Age = 20, IsMarried = true });
+            list.Add(new Human { Id = 2, Age = 25, IsMarried = false });
+            List<AboutHuman> list1 = new List<AboutHuman>();
+            list1.Add(new AboutHuman { Id = 1, Age = 20, IsMarried = true, Name = "Aram" });
+            list1.Add(new AboutHuman { Id = 2, Age = 25, IsMarried = false, Name = "Ani" });
+            List<SalaryHuman> list2 = new List<SalaryHuman>();
+            list2.Add(new SalaryHuman { Id = 1, Name = "Aram", Age = 20, IsMarried = true });
+            list2.Add(new SalaryHuman { Id = 2, Name = "Ani", Age = 25, IsMarried = false });
+            List<FamilyMember> list3 = new List<FamilyMember>();
+            list3.Add(new FamilyMember { Id = 1, Name = "Aram", Age = 20, IsMarried = true, Salary = 3000000, FamilyMembers = "ANi Anyan, Poghos Poghosyan" });
+            List<FamilyMember> list4 = new List<FamilyMember>();
+            list4.Add(new FamilyMember { Id = 2, Name = "Ani", Age = 25, IsMarried = false, Salary = 250000, FamilyMembers = "null" });
+            Human a = new Human();
             Console.WriteLine("Please entre Id...");
             a.Id = int.Parse(Console.ReadLine());
-            if (a.Id == 1)
+            switch (a.Id)
             {
-                foreach (var item in list3)
-                {
-                    Console.WriteLine("id is "+item.Id+", age is "+item.Age+", Name is "+item.Name+", salary is "+item.Salary+", family mambers are "+item.FamilyMembers);
-                }
-                
+                case 1:
+                    foreach (var item in list3)
+                    {
+                        Console.WriteLine("id is " + item.Id + ", age is " + item.Age + ", Name is " + item.Name + ", salary is " + item.Salary + ", family mambers are " + item.FamilyMembers);
+                    }
+                    break;
+
+                case 2:
+                    foreach (var item in list4)
+                    {
+                        Console.WriteLine("id is " + item.Id + ", age is " + item.Age + ", Name is " + item.Name + ", salary is " + item.Salary + ", family mambers are " + item.FamilyMembers);
+                    }
+
+                    break;
+                default:
+                    Console.WriteLine("id doesn't find");
+                    break;
             }
-            else if(a.Id == 2)
-            {
-                foreach (var item in list4)
-                {
-                    Console.WriteLine("id is " + item.Id + ", age is " + item.Age + ", Name is " + item.Name + ", salary is " + item.Salary + ", family mambers are " + item.FamilyMembers);
-                }
-
-            }
-            else
-            {
-                Console.WriteLine("id doesn't find");
-            }
-
-
-
-
-
-
-
         }
     }
 }
